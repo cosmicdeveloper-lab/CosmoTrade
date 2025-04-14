@@ -38,40 +38,40 @@ git clone https://github.com/cosmicdeveloper-lab/cosmotrade.git
 cd cosmotrade
 ```
 
-###2. Install dependencies
+### 2. Install dependencies
 
 ```bash
 pip install -r requirements.txt
 ```
 
-###3. Create a .env file
+### 3. Create a .env file
 
 ```bash
 TELEGRAM_TOKEN=your_bot_token
 CHAT_ID=your_chat_id
 ```
 
-## Run the Bot (Basic)
+### Run the Bot (Basic)
 
 ```bash
 python bot.py
 ```
 
-# 🐳 Run with Docker
+## 🐳 Run with Docker
 
-## 1. Build the image
+### 1. Build the image
 
 ```bash
 docker build -t cosmotrade .
 ```
 
-## 2. Run the container
+### 2. Run the container
 
 ```bash
 docker run --env-file .env cosmotrade
 ```
 
-# 🧑‍💻 Author
+## 🧑‍💻 Author
 
-## Built by Benjamin Amini — feel free to fork and modify!
+### Built by Benjamin Amini — feel free to fork and modify!
 
