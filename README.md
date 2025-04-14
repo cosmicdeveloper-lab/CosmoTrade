@@ -54,7 +54,7 @@ CHAT_ID=your_chat_id
 ### 4. Run the Bot (Basic)
 
 ```bash
-python bot.py
+python init.py
 ```
 
 ## 🐳 Run with Docker
