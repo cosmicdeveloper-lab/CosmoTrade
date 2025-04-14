@@ -34,5 +34,5 @@ A Python bot that analyzes market data and sends **automated trading signals** (
 ### 1. Clone the repo
 
 ```bash
-git clone https://github.com/your_username/trade-signal-bot.git
-cd trade-signal-bot
+git clone https://github.com/cosmicdeveloper-lab/cosmotrade.git
+cd cosmotrade
