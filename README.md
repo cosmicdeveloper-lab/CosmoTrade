@@ -51,7 +51,7 @@ TELEGRAM_TOKEN=your_bot_token
 CHAT_ID=your_chat_id
 ```
 
-### Run the Bot (Basic)
+### 4. Run the Bot (Basic)
 
 ```bash
 python bot.py
