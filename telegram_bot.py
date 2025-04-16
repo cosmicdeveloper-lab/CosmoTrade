@@ -24,6 +24,8 @@ last_message = ''
 
 def send_if_changed(token, chat_id, new_message):  #Avoid repetitive message
     global last_message
+    print(f"[DEBUG] Last message: '{last_message}'")
+    print(f"[DEBUG] New message: '{new_message}'")
     if new_message != last_message:
         send_telegram_message(token, chat_id, new_message)
         last_message = new_message
