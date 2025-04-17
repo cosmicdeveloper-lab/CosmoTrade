@@ -1,14 +1,15 @@
 import requests
 
-def send_telegram_message(token, chat_id, messages):
+
+def send_telegram_message(token, chat_id, message):
+    print("[INFO] Sending to Telegram...")
     url = f"https://api.telegram.org/bot{token}/sendMessage"
     payload = {
         'chat_id': chat_id,
-        'text': str(messages),
+        'text': message,
         'parse_mode': 'Markdown'
     }
     response = requests.post(url, data=payload)
-    return response.json()
 
 
 def format_signal_dict(name, signal_dict):
@@ -22,10 +23,10 @@ def format_signal_dict(name, signal_dict):
 
 last_message = ''
 
+
 def send_if_changed(token, chat_id, new_message):  #Avoid repetitive message
     global last_message
-    print(f"[DEBUG] Last message: '{last_message}'")
-    print(f"[DEBUG] New message: '{new_message}'")
+
     if new_message != last_message:
         send_telegram_message(token, chat_id, new_message)
         last_message = new_message
