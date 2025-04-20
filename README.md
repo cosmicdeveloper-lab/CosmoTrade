@@ -68,7 +68,7 @@ docker build -t cosmotrade .
 ### 2. Run the container
 
 ```bash
-docker run --env-file .env cosmotrade
+docker run -d --env-file .env --restart always cosmotrade
 ```
 
 ## 🧑‍💻 Author
