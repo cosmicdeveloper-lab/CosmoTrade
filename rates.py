@@ -9,12 +9,12 @@ with open('symbols/top_30_coins.csv', mode='r') as file:
 
 
 # Get [timestamp, open, high, low, close, volume]
-def get_all_rates(symbols, timeframe=[]):
+def get_all_rates(symbols, timeframe=None):
     exchange = ccxt.coinex()
     frames = []
     for s in symbols:
         for t in timeframe:
-            rates = exchange.fetch_ohlcv(s, timeframe=t, limit=96)
+            rates = exchange.fetch_ohlcv(s, timeframe=t, limit=100)
             frame = pd.DataFrame(rates, columns=["timestamp", "open", "high", "low", "close", "volume"])
             frame["symbol"] = s  # adding a column to indicate which coin it belongs to
             frame['timeframe'] = t

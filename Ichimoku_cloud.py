@@ -22,7 +22,7 @@ def ichimoku_signal(df):
     signals = {}
     grouped = df.groupby(["symbol", "timeframe"])
 
-    for (symbol, timeframe) , group in grouped:
+    for (symbol, timeframe), group in grouped:
         group = group.sort_values("timestamp").reset_index(drop=True)
 
         # Retrieve the latest values for each line for the current symbol
