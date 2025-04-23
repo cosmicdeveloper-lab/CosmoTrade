@@ -51,7 +51,7 @@ def find_divergence(df):
 
         divergence = None
         if len(macd_extrema) >= 2 and len(rsi_extrema) >= 2:
-            p1, p2 = macd_extrema[-2], macd_extrema[-1]
+            p1, p2 = macd_extrema[-3], macd_extrema[-1]
             price1, price2 = group["close"].iloc[p1], group["close"].iloc[p2]
             macd1, macd2 = group["MACD_hist"].iloc[p1], group["MACD_hist"].iloc[p2]
             rsi1, rsi2 = group["RSI"].iloc[p1], group["RSI"].iloc[p2]
