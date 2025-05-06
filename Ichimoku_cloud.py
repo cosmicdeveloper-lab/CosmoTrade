@@ -28,13 +28,14 @@ def ichimoku_signal(df):
         # Retrieve the latest values for each line for the current symbol
         conv = group['Conversion_Line'].iloc[-1]
         base = group['Base_Line'].iloc[-1]
-        span_a = group['Leading_Span_A'].iloc[-1]
-        span_b = group['Leading_Span_B'].iloc[-1]
+        span_a = group['Leading_Span_A'].iloc[-27]
+        span_b = group['Leading_Span_B'].iloc[-27]
         lagging = group['Lagging_Span'].iloc[-27]
+        price = group['close'].iloc[-1]
 
-        if all(x > span_a and x > span_b for x in [conv, base, lagging]):
+        if all(x > span_b and x > span_a for x in [conv, base, lagging, price]):
             signals[symbol] = f'Exit from above in {symbol} in timeframe {timeframe}'
-        elif all(x < span_a and x < span_b for x in [conv, base, lagging]):
+        elif all(x < span_b and x < span_a for x in [conv, base, lagging, price]):
             signals[symbol] = f'Exit from below in {symbol} in timeframe {timeframe}'
 
     return signals

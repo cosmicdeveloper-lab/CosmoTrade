@@ -25,12 +25,13 @@ if __name__ == '__main__':
 
         combined_data = pd.concat([dataframe_4h, dataframe_1d], axis=0)
 
-        message = '\n------\n'.join([
-            format_signal_dict("Divergence", find_divergence(dataframe)),
-            format_signal_dict("Ichimoku", ichimoku_signal(combined_data)),
-            format_signal_dict("SMA Cross", sma_cross(combined_data)),
-            format_signal_dict("Fibonacci", get_fibo(combined_data))
-        ])
+        message1 = format_signal_dict("Divergence", find_divergence(dataframe))
+        message2 = format_signal_dict("SMA Cross", sma_cross(dataframe))
+        message3 = format_signal_dict("Fibonacci", get_fibo(combined_data))
+        message4 = format_signal_dict("Ichimoku", ichimoku_signal(combined_data))
 
-        send_if_changed(tel_token, chat_id, message)
+        send_if_changed(tel_token, chat_id, message1)
+        send_if_changed(tel_token, chat_id, message2)
+        send_if_changed(tel_token, chat_id, message3)
+        send_if_changed(tel_token, chat_id, message4)
         time.sleep(3600)

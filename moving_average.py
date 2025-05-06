@@ -19,8 +19,13 @@ def sma_cross(df):
         sma25 = group['SMA25'].iloc[-1]
         sma99 = group['SMA99'].iloc[-1]
 
-        if (1 <= relative_difference(sma7, sma25) and relative_difference(sma7, sma99)
-                and relative_difference(sma25, sma99) < 1.1):
-            sma_result[symbol] = f'There is a cross on {symbol} with timeframe {timeframe}'
+        diff_7_25 = relative_difference(sma7, sma25)
+        diff_7_99 = relative_difference(sma7, sma99)
+        diff_25_99 = relative_difference(sma25, sma99)
+
+        if all(0.01 > x for x in [diff_7_25, diff_7_99, diff_25_99]) and sma7 > sma25 > sma99:
+            sma_result[symbol] = f'{symbol} with TimeFrame {timeframe} Bullish cross'
+        elif all(0.01 > x for x in [diff_7_25, diff_7_99, diff_25_99]) and sma99 > sma25 > sma7:
+            sma_result[symbol] = f'{symbol} with TimeFrame {timeframe} Bearish cross'
 
     return sma_result
