@@ -10,5 +10,5 @@ def get_fibo(df):
         price = group['close'].iloc[-1]
 
         if abs(fibo - price) < 0.01:
-            fibo_result[symbol] = f'Strong potential zone for {symbol} in timeframe {timeframe}'
+            fibo_result[symbol] = f'{symbol} with Timeframe {timeframe} Strong potential zone'
     return fibo_result

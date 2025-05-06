@@ -34,8 +34,8 @@ def ichimoku_signal(df):
         price = group['close'].iloc[-1]
 
         if all(x > span_b and x > span_a for x in [conv, base, lagging, price]):
-            signals[symbol] = f'Exit from above in {symbol} in timeframe {timeframe}'
+            signals[symbol] = f'{symbol} with Timeframe {timeframe} Exit from above'
         elif all(x < span_b and x < span_a for x in [conv, base, lagging, price]):
-            signals[symbol] = f'Exit from below in {symbol} in timeframe {timeframe}'
+            signals[symbol] = f'{symbol} with Timeframe {timeframe} Exit from below'
 
     return signals
