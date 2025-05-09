@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://drive.google.com/uc?id=1E26NP573eldPqoscgmrwd2-ciKTqPKrz" alt="CosmoTrade Logo" width="300" height="300"/>
+  <img src="https://drive.google.com/uc?id=1CUvzom-CVovmeokZdIUezPInMsqdz8W3" alt="CosmoTrade Logo"/>
 </p>
 
 <h1 align="center">CosmoTrade</h1>
