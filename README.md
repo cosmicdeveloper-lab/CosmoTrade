@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="assets/logo_cosmotrade.png" alt="CosmoTrade Logo" width="300"/>
+  <img src="https://github.com/cosmicdeveloper-lab/CosmoTrade/blob/master/assets/logo_cosmotrade.png" alt="CosmoTrade Logo" width="300"/>
 </p>
 
 <h1 align="center">CosmoTrade</h1>
@@ -30,10 +30,10 @@
 ## 🧠 Logic
 
 - Divergence (RSI & MACD):
-    -A divergence occurs when the price moves in one direction while indicators like RSI and MACD move in the opposite direction. For example, if the price rises but RSI and MACD fall, this can signal a potential reversal.
+    - A divergence occurs when the price moves in one direction while indicators like RSI and MACD move in the opposite direction. For example, if the price rises but RSI and MACD fall, this can signal a potential reversal.
 
 - Ichimoku Cloud:
-    -When the lagging span, conversion line, base line, and price all break out of the Ichimoku Cloud (either above or below), it may indicate a strong trading signal—above the cloud suggests a buy signal, below suggests a sell signal.
+    - When the lagging span, conversion line, base line, and price all break out of the Ichimoku Cloud (either above or below), it may indicate a strong trading signal—above the cloud suggests a buy signal, below suggests a sell signal.
 
 - Moving Average Crosses:
     - When short-term (7), mid-term (25), and long-term (99) moving averages cross in a specific order (e.g., 7 > 25 > 99), it often signals a bullish trend. Conversely, 99 > 25 > 7 indicates a bearish trend.
@@ -41,7 +41,7 @@
 - Fibonacci Level (0.618):
     - The 0.618 Fibonacci retracement level is a commonly watched point of resistance or support. Price reactions around this level can suggest potential reversals or continuation.
 
-- Caution:
+- ⚠️ Caution:
   - These are not guaranteed signals. Always verify and analyze the market independently before making any trading decisions.
 
 ---
@@ -119,7 +119,7 @@ docker run -d --env-file .env --restart always cosmotrade
 
 Here's what a typical signal looks like in Telegram:
 
-![CosmoTrade Signal Screenshot](assets/example.png)
+![CosmoTrade Signal Screenshot](https://github.com/cosmicdeveloper-lab/CosmoTrade/blob/master/assets/example.png)
 
 ## 🧑‍💻 Author
 
