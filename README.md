@@ -49,12 +49,14 @@ pip install -r requirements.txt
 ```bash
 TELEGRAM_TOKEN=your_bot_token
 CHAT_ID=your_chat_id
+EXCHANGE=your_exchange_name(coinex, kucoin, binance, ...)
 ```
+### check here for more about the exchanges https://docs.ccxt.com/#/
 
 ### 4. Run the Bot (Basic)
 
 ```bash
-python init.py
+python main.py
 ```
 
 ## 🐳 Run with Docker
