@@ -44,10 +44,10 @@ def ichimoku_signal(df):
         timestamp = group['timestamp'].iloc[-1]
         pb = relative_difference(price, span_b)
 
-        if all(x > span_b and x > span_a for x in [conv, base, price, lagging]) and (0.05 > pb):
+        if all(x > span_b and x > span_a for x in [conv, base, price, lagging]) and (0.025 > pb):
             ichimoku_results[timestamp] = f'{symbol} with Timeframe {timeframe} Exit from above'
 
-        elif all(x < span_b and x < span_a for x in [conv, base, price, lagging]) and (0.05 > pb):
+        elif all(x < span_b and x < span_a for x in [conv, base, price, lagging]) and (0.025 > pb):
             ichimoku_results[timestamp] = f'{symbol} with Timeframe {timeframe} Exit from below'
 
     return ichimoku_results
