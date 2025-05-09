@@ -119,7 +119,7 @@ docker run -d --env-file .env --restart always cosmotrade
 
 Here's what a typical signal looks like in Telegram:
 
-![CosmoTrade Signal Screenshot](assets/example.jpg)
+![CosmoTrade Signal Screenshot](assets/Screenshot from 2025-05-09 19-15-44.png)
 
 ## 🧑‍💻 Author
 
