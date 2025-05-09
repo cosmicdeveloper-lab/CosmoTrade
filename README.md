@@ -13,7 +13,7 @@ A Python bot that analyzes market data and sends **automated trading signals** (
   - RSI Divergence
   - Ichimoku Cloud signals
   - Moving Average Crosses
-  - Fibonacci levels
+  - Fibonacci 0.618 level
 - 📤 Sends formatted messages to your Telegram bot
 - 🧠 Avoids duplicate signals
 - 🐳 Optional Docker support for deployment
@@ -45,13 +45,13 @@ pip install -r requirements.txt
 ```
 
 ### 3. Create a .env file
+more about the exchanges https://docs.ccxt.com/#/
 
 ```bash
 TELEGRAM_TOKEN=your_bot_token
 CHAT_ID=your_chat_id
 EXCHANGE=your_exchange_name(coinex, kucoin, binance, ...)
 ```
-### check here for more about the exchanges https://docs.ccxt.com/#/
 
 ### 4. Run the Bot (Basic)
 
