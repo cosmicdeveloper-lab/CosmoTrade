@@ -3,10 +3,7 @@
 </p>
 
 <h1 align="center">CosmoTrade</h1>
-<p align="center">📈 Telegram Crypto Trade Signal Bot</p>
 
-
-# CosmoTrade
 
 ## 📈 Telegram Crypto Trade Signal Bot
 
