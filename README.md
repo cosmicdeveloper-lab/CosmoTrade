@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://github.com/cosmicdeveloper-lab/CosmoTrade/blob/master/assets/logo_cosmotrade.png" alt="CosmoTrade Logo" width="300"/>
+  <img src="assets/logo_cosmotrade.jpg" alt="CosmoTrade Logo" width="300"/>
 </p>
 
 <h1 align="center">CosmoTrade</h1>
@@ -119,7 +119,7 @@ docker run -d --env-file .env --restart always cosmotrade
 
 Here's what a typical signal looks like in Telegram:
 
-![CosmoTrade Signal Screenshot](https://github.com/cosmicdeveloper-lab/CosmoTrade/blob/master/assets/example.png)
+![CosmoTrade Signal Screenshot](assets/example.jpg)
 
 ## 🧑‍💻 Author
 
