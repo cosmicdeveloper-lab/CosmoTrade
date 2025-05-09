@@ -118,7 +118,16 @@ Here's what a typical signal looks like in Telegram:
 
 ![CosmoTrade Signal Screenshot](https://drive.google.com/uc?id=1nnmfVOSD7a3ox4nY8n6bsguXqvwVmWJR)
 
+## Run tests
+```bash
+python -m unittest discover tests
+```
+
 ## 🧑‍💻 Author
 
 ### Built by Benjamin Amini — feel free to fork and modify!
+
+## 📄 License
+
+This project is licensed under the [MIT License](./LICENSE).
 
