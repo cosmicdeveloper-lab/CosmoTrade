@@ -12,7 +12,7 @@ FROM python:3.10-slim
 WORKDIR /home/benyamin/PycharmProjects/CosmoTrade
 
 # Copy Python scripts into the container
-COPY divergence.py fibonacci.py Ichimoku_cloud.py init.py moving_average.py rates.py telegram_bot.py ./
+COPY divergence.py fibonacci.py Ichimoku_cloud.py main.py moving_average.py rates.py telegram_bot.py ./
 
 # Copy the symbols folder (ensure this folder exists in the build context)
 COPY symbols/ ./symbols/
