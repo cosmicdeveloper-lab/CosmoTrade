@@ -10,8 +10,7 @@
 
 ## 📈 Telegram Crypto Trade Signal Bot
 
-CosmoTrade is an automated crypto trading signal bot that uses multiple technical indicators
-to send real-time alerts to Telegram. Ideal for crypto enthusiasts, traders, and developers.
+- CosmoTrade is an automated crypto trading signal bot that uses multiple technical indicators to send real-time alerts to Telegram. Ideal for crypto enthusiasts, traders, and developers.
 ---
 
 ## 🚀 Features
@@ -42,8 +41,8 @@ to send real-time alerts to Telegram. Ideal for crypto enthusiasts, traders, and
 - Fibonacci Level (0.618):
     - The 0.618 Fibonacci retracement level is a commonly watched point of resistance or support. Price reactions around this level can suggest potential reversals or continuation.
 
-  - Caution:
-    - These are not guaranteed signals. Always verify and analyze the market independently before making any trading decisions.
+- Caution:
+  - These are not guaranteed signals. Always verify and analyze the market independently before making any trading decisions.
 
 ---
 
