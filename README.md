@@ -45,7 +45,7 @@ pip install -r requirements.txt
 ```
 
 ### 3. Create a .env file
-check here for more about the exchanges https://docs.ccxt.com/#/
+more about the exchanges https://docs.ccxt.com/#/
 
 ```bash
 TELEGRAM_TOKEN=your_bot_token
