@@ -20,9 +20,9 @@ def send_telegram_message(token, chat_id, message):
     requests.post(url, data=payload)
 
 
-def format_signal_dict(name, signal_dict):
+def format_signal_dict(signal_dict):
     if signal_dict:
-        lines = [f"\n📌 *{name}*"]
+        lines = []
         for _, message in sorted(signal_dict.items()):
             lines.append(f'🦉 {message}')
         return '\n'.join(lines)
@@ -32,7 +32,7 @@ sent_signals = set()
 last_reset_time = time.time()
 
 
-def send_if_changed(token, chat_id, new_message):
+def send_if_changed(token, chat_id, name, new_message):
     global sent_signals, last_reset_time
     RESET_INTERVAL_SECONDS = 48 * 60 * 60
     current_time = time.time()
@@ -54,7 +54,7 @@ def send_if_changed(token, chat_id, new_message):
         if new_to_send:
             logging.info('Found new signals.')
             # Compose message of only new signals
-            message = "\n".join(sorted(new_to_send))
+            message = f"\n📌 *{name}*\n" + "\n".join(sorted(new_to_send))
             send_telegram_message(token, chat_id, message)
             sent_signals.update(new_to_send)
         else:

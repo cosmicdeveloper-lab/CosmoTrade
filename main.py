@@ -24,13 +24,13 @@ if __name__ == '__main__':
 
         combined_data = pd.concat([dataframe_4h, dataframe_1d], axis=0)
 
-        divergence_signal = format_signal_dict('Divergence', find_divergence(dataframe))
-        sma_signal = format_signal_dict('SMA Cross', sma_cross(dataframe))
-        fibo_signal = format_signal_dict('Fibonacci', get_fibo(combined_data))
-        ichimoku_cloud_signal = format_signal_dict('Ichimoku Cloud', ichimoku_signal(combined_data))
+        divergence_signal = format_signal_dict(find_divergence(dataframe))
+        sma_signal = format_signal_dict( sma_cross(dataframe))
+        fibo_signal = format_signal_dict(get_fibo(combined_data))
+        ichimoku_cloud_signal = format_signal_dict(ichimoku_signal(combined_data))
 
-        send_if_changed(tel_token, chat_id, divergence_signal)
-        send_if_changed(tel_token, chat_id, sma_signal)
-        send_if_changed(tel_token, chat_id, fibo_signal)
-        send_if_changed(tel_token, chat_id, ichimoku_cloud_signal)
+        send_if_changed(tel_token, chat_id, 'Divergence', divergence_signal)
+        send_if_changed(tel_token, chat_id, 'SMA Cross', sma_signal)
+        send_if_changed(tel_token, chat_id, 'Fibonacci', fibo_signal)
+        send_if_changed(tel_token, chat_id, 'Ichimoku Cloud', ichimoku_cloud_signal)
         time.sleep(3600)
