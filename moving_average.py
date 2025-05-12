@@ -31,9 +31,9 @@ def sma_cross(df):
         diff_7_99 = relative_difference(sma7, sma99)
         diff_25_99 = relative_difference(sma25, sma99)
 
-        if all(0.025 > x for x in [diff_7_25, diff_7_99, diff_25_99]) and (sma7 > sma25 > sma99):
+        if all(0.01 > x for x in [diff_7_25, diff_7_99, diff_25_99]) and (sma7 > sma25 > sma99):
             sma_result[timestamp] = f'{symbol} with TimeFrame {timeframe} Bullish cross'
-        elif all(0.025 > x for x in [diff_7_25, diff_7_99, diff_25_99]) and (sma99 > sma25 > sma7):
+        elif all(0.01 > x for x in [diff_7_25, diff_7_99, diff_25_99]) and (sma99 > sma25 > sma7):
             sma_result[timestamp] = f'{symbol} with TimeFrame {timeframe} Bearish cross'
 
     return sma_result
