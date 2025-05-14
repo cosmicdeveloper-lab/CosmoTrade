@@ -25,7 +25,7 @@ if __name__ == '__main__':
         combined_data = pd.concat([dataframe_4h, dataframe_1d], axis=0)
 
         divergence_signal = format_signal_dict(find_divergence(dataframe))
-        sma_signal = format_signal_dict( sma_cross(dataframe))
+        sma_signal = format_signal_dict( sma_cross(combined_data))
         fibo_signal = format_signal_dict(get_fibo(combined_data))
         ichimoku_cloud_signal = format_signal_dict(ichimoku_signal(combined_data))
 
