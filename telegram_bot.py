@@ -34,7 +34,7 @@ last_reset_time = time.time()
 
 def send_if_changed(token, chat_id, name, new_message):
     global sent_signals, last_reset_time
-    RESET_INTERVAL_SECONDS = 24 * 60 * 60
+    RESET_INTERVAL_SECONDS = 36 * 60 * 60
     current_time = time.time()
 
     # Check if the reset interval has passed
