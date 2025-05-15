@@ -5,7 +5,6 @@ from fibonacci import get_fibo
 from telegram_bot import send_if_changed, format_signal_dict
 from rates import get_all_rates, TOP_30_COINS
 
-import pandas as pd
 import time
 from dotenv import load_dotenv
 import os
