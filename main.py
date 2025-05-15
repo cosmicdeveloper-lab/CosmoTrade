@@ -24,4 +24,4 @@ if __name__ == '__main__':
         send_if_changed(tel_token, chat_id, 'SMA Cross', sma_cross(dataframe))
         send_if_changed(tel_token, chat_id, 'Fibonacci', get_fibo(dataframe))
         send_if_changed(tel_token, chat_id, 'Ichimoku Cloud', ichimoku_signal(dataframe))
-        time.sleep(30)
+        time.sleep(3600)
