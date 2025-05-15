@@ -39,7 +39,7 @@ def find_divergence(df):
         except IndexError:
             continue
 
-        # Getting the highest-high or the lowest-low of two left to the end segments
+        # Getting the highest-high of two left to the end segments
         if (left_segment.iloc[:-1] > 0).all():
             macd1 = s1['MACD_hist'].max()
             macd2 = s2['MACD_hist'].max()
@@ -47,11 +47,13 @@ def find_divergence(df):
             price2 = s2['high'].max()
             rsi1 = s1['RSI'].max()
             rsi2 = s2['RSI'].max()
+
+        # Getting the lowest-low of two left to the end segments
         else:
             macd1 = s1['MACD_hist'].min()
             macd2 = s2['MACD_hist'].min()
-            price1 = s1['high'].min()
-            price2 = s2['high'].min()
+            price1 = s1['low'].min()
+            price2 = s2['low'].min()
             rsi1 = s1['RSI'].min()
             rsi2 = s2['RSI'].min()
 
