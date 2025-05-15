@@ -19,18 +19,9 @@ if __name__ == '__main__':
 
     while True:
         dataframe = get_all_rates(TOP_30_COINS, timeframe=['1h', '4h', '1d'])
-        dataframe_4h = dataframe[dataframe['timeframe'] == '4h']
-        dataframe_1d = dataframe[dataframe['timeframe'] == '1d']
 
-        combined_data = pd.concat([dataframe_4h, dataframe_1d], axis=0)
-
-        divergence_signal = format_signal_dict(find_divergence(dataframe))
-        sma_signal = format_signal_dict( sma_cross(combined_data))
-        fibo_signal = format_signal_dict(get_fibo(combined_data))
-        ichimoku_cloud_signal = format_signal_dict(ichimoku_signal(combined_data))
-
-        send_if_changed(tel_token, chat_id, 'Divergence', divergence_signal)
-        send_if_changed(tel_token, chat_id, 'SMA Cross', sma_signal)
-        send_if_changed(tel_token, chat_id, 'Fibonacci', fibo_signal)
-        send_if_changed(tel_token, chat_id, 'Ichimoku Cloud', ichimoku_cloud_signal)
-        time.sleep(3600)
+        send_if_changed(tel_token, chat_id, 'Divergence', find_divergence(dataframe))
+        send_if_changed(tel_token, chat_id, 'SMA Cross', sma_cross(dataframe))
+        send_if_changed(tel_token, chat_id, 'Fibonacci', get_fibo(dataframe))
+        send_if_changed(tel_token, chat_id, 'Ichimoku Cloud', ichimoku_signal(dataframe))
+        time.sleep(30)
