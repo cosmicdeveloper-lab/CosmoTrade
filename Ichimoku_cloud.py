@@ -52,14 +52,14 @@ def ichimoku_signal(df):
         base_bullish = base > span_a and base > span_b
         price_bullish = price > span_a and price > span_b
         lagging_bullish = lagging > span_a_lagging and lagging > span_b_lagging
-        distance_bullish = pb < 0.025
+        distance_bullish = pb < 0.01
 
         # Bearish logic
         conv_bearish = conv < span_a and conv < span_b
         base_bearish = base < span_a and base < span_b
         price_bearish = price < span_a and price < span_b
         lagging_bearish = lagging < span_a_lagging and lagging < span_b_lagging
-        near_cloud = pb < 0.025
+        near_cloud = pb < 0.01
 
         if conv_bullish and base_bullish and price_bullish and lagging_bullish and distance_bullish:
             ichimoku_results[timestamp] = f'{symbol} with Timeframe {timeframe} Exit from above'
