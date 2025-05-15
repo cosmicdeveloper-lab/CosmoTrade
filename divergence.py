@@ -35,7 +35,6 @@ def find_divergence(df):
         try:
             s1 = group.loc[macd_changes[-4]:macd_changes[-3]]
             s2 = group.loc[macd_changes[-2]:macd_changes[-1]]
-            timestamp = group['timestamp'].iloc[-1]
         except IndexError:
             continue
 
@@ -47,6 +46,7 @@ def find_divergence(df):
             price2 = s2['high'].max()
             rsi1 = s1['RSI'].max()
             rsi2 = s2['RSI'].max()
+            signal_id = s2['MACD_hist'].max()
 
         # Getting the lowest-low of two left to the end segments
         else:
@@ -56,10 +56,11 @@ def find_divergence(df):
             price2 = s2['low'].min()
             rsi1 = s1['RSI'].min()
             rsi2 = s2['RSI'].min()
+            signal_id = s2['MACD_hist'].min()
 
         if price1 > price2 and macd2 > macd1 and rsi2 > rsi1:
-            divergence_results[timestamp] = f'{symbol} with TimeFrame {timeframe} Bullish divergence'
+            divergence_results[signal_id] = f'{symbol} with TimeFrame {timeframe} Bullish divergence'
         elif price2 > price1 and macd1 > macd2 and rsi1 > rsi2:
-            divergence_results[timestamp] = f'{symbol} with TimeFrame {timeframe} Bearish divergence'
+            divergence_results[signal_id] = f'{symbol} with TimeFrame {timeframe} Bearish divergence'
 
     return divergence_results
