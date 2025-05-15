@@ -40,14 +40,31 @@ def ichimoku_signal(df):
         span_a = group['Leading_Span_A'].iloc[-27]
         span_b = group['Leading_Span_B'].iloc[-27]
         lagging = group['Lagging_Span'].iloc[-27]
-        price = group['close'].iloc[-1]
+        span_a_lagging = group['Leading_Span_A'].iloc[-52]
+        span_b_lagging = group['Leading_Span_B'].iloc[-52]
+        price = group['high'].iloc[-1]
         timestamp = group['timestamp'].iloc[-1]
+        # To check if price crossing the leading_span_b
         pb = relative_difference(price, span_b)
 
-        if all(x > span_b and x > span_a for x in [conv, base, price, lagging]) and (0.025 > pb):
+        # Bullish logic
+        conv_bullish = conv > span_a and conv > span_b
+        base_bullish = base > span_a and base > span_b
+        price_bullish = price > span_a and price > span_b
+        lagging_bullish = lagging > span_a_lagging and lagging > span_b_lagging
+        distance_bullish = pb < 0.025
+
+        # Bearish logic
+        conv_bearish = conv < span_a and conv < span_b
+        base_bearish = base < span_a and base < span_b
+        price_bearish = price < span_a and price < span_b
+        lagging_bearish = lagging < span_a_lagging and lagging < span_b_lagging
+        near_cloud = pb < 0.025
+
+        if conv_bullish and base_bullish and price_bullish and lagging_bullish and distance_bullish:
             ichimoku_results[timestamp] = f'{symbol} with Timeframe {timeframe} Exit from above'
 
-        elif all(x < span_b and x < span_a for x in [conv, base, price, lagging]) and (0.025 > pb):
+        elif conv_bearish and base_bearish and price_bearish and lagging_bearish and near_cloud:
             ichimoku_results[timestamp] = f'{symbol} with Timeframe {timeframe} Exit from below'
 
     return ichimoku_results
