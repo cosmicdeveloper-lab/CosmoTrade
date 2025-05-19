@@ -13,7 +13,8 @@ load_dotenv()
 tel_token = os.getenv('TELEGRAM_TOKEN')
 chat_id = os.getenv('CHAT_ID')
 
-if __name__ == '__main__':
+
+def main():
     while True:
         dataframe = get_all_rates(TOP_30_COINS, timeframe=['2h', '4h', '12h', '1d', '3d'])
 
@@ -22,3 +23,7 @@ if __name__ == '__main__':
         send_if_changed(tel_token, chat_id, 'Fibonacci', get_fibo(dataframe))
         send_if_changed(tel_token, chat_id, 'Ichimoku Cloud', ichimoku_signal(dataframe))
         time.sleep(3600)
+
+
+if __name__ == '__main__':
+    main()
