@@ -64,8 +64,40 @@ Monitors price behavior around the 0.618 level, commonly used for reversals or s
 - Telegram Bot Token and Chat ID
 - Flask (for journal interface)
 - `.env` file with exchange and credentials
+- Redis (used as a database/cache)
+
 
 ---
+
+## 🧰 Install Redis
+
+**Redis is required for managing state and caching signals.**
+
+---
+
+### 🖥️ On Ubuntu/Debian:
+
+```bash
+sudo apt update
+sudo apt install redis-server
+
+sudo systemctl enable redis-server
+sudo systemctl start redis-server
+```
+
+### 🍎 On macOS (using Homebrew):
+
+```bash
+brew install redis
+brew services start redis
+```
+
+### 🐳 Docker Alternative:
+
+```bash
+docker run -d --name redis -p 6379:6379 redis
+```
+> ⚠️ **Disclaimer:** Make sure Redis is running and accessible before starting the bot..
 
 
 ## 🛠️ Setup Instructions
