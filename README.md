@@ -122,6 +122,7 @@ more about the exchanges https://docs.ccxt.com/#/
 TELEGRAM_TOKEN=your_bot_token
 CHAT_ID=your_chat_id
 EXCHANGE=your_exchange_name(coinex, kucoin, binance, ...)
+WTF_SECRET_KEY=YOUR_SECRET_KEY
 ```
 
 ### 4. Run the Bot (Basic)
@@ -152,6 +153,7 @@ more about the exchanges https://docs.ccxt.com/#/
 TELEGRAM_TOKEN=your_bot_token
 CHAT_ID=your_chat_id
 EXCHANGE=your_exchange_name(coinex, kucoin, binance, ...)
+WTF_SECRET_KEY=YOUR_SECRET_KEY
 ```
 
 ### 4. Run the container
