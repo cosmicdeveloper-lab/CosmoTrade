@@ -134,9 +134,12 @@ docker run -d --env-file .env --restart always cosmotrade
 Here's what a typical signal looks like in Telegram:
 routes /signals/   /jornal/
 
-![CosmoTrade Signal Screenshot](https://drive.google.com/uc?id=1nnmfVOSD7a3ox4nY8n6bsguXqvwVmWJR, 
-https://drive.google.com/uc?id=1ITpNnZ-5R_9eM2cqasAZGUM5RgJHZOby,
-https://drive.google.com/uc?id=1-ZvmWb9rmhV29XCbcPRt_v_DjqZASD0P)
+![CosmoTrade Signal Screenshot](https://drive.google.com/uc?id=1nnmfVOSD7a3ox4nY8n6bsguXqvwVmWJR)
+
+![FLASK JORNAL](https://drive.google.com/uc?id=1ITpNnZ-5R_9eM2cqasAZGUM5RgJHZOby)
+
+![FLASK SIGNALS](https://drive.google.com/uc?id=1-ZvmWb9rmhV29XCbcPRt_v_DjqZASD0P)
+
 
 ## Run tests
 ```bash
