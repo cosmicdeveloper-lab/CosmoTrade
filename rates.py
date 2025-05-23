@@ -3,6 +3,9 @@ import pandas as pd
 import ccxt
 from dotenv import load_dotenv
 import os
+import logging
+
+logger = logging.getLogger(__name__)
 
 # Load coin pairs from the CSV file
 with open('symbols/coins.csv', mode='r') as file:
@@ -11,16 +14,19 @@ with open('symbols/coins.csv', mode='r') as file:
 
 
 # Get [timestamp, open, high, low, close, volume]
-def get_all_rates(symbols, timeframe=None):
+def get_all_rates(symbols=None, timeframe=None):
+    if timeframe is None and symbols is None:
+        timeframe = ['2h', '4h', '12h', '1d', '3d']
+        symbols = TOP_30_COINS
+
     load_dotenv()
     exchange = os.getenv('EXCHANGE')
-
     if exchange in ccxt.exchanges:
         exchange_class = getattr(ccxt, exchange)
         exchange = exchange_class()
-        print(f'Using exchange: {exchange}')
+        logger.info(f'Using exchange: {exchange}')
     else:
-        print(f'Exchange {exchange} not supported by CCXT.')
+        logger.error(f'Exchange {exchange} not supported by CCXT.')
 
     frames = []
     for s in symbols:

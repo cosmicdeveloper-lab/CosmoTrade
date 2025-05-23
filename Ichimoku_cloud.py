@@ -62,9 +62,9 @@ def ichimoku_signal(df):
         near_cloud = pb < 0.01
 
         if conv_bullish and base_bullish and price_bullish and lagging_bullish and distance_bullish:
-            ichimoku_results[timestamp] = f'{symbol} with Timeframe {timeframe} Exit from above'
+            ichimoku_results[timestamp.item()] = f'{symbol} with Timeframe {timeframe} Exit from above'
 
         elif conv_bearish and base_bearish and price_bearish and lagging_bearish and near_cloud:
-            ichimoku_results[timestamp] = f'{symbol} with Timeframe {timeframe} Exit from below'
+            ichimoku_results[timestamp.item()] = f'{symbol} with Timeframe {timeframe} Exit from below'
 
     return ichimoku_results

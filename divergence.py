@@ -59,8 +59,8 @@ def find_divergence(df):
             signal_id = price2
 
         if price1 > price2 and macd2 > macd1 and rsi2 > rsi1:
-            divergence_results[signal_id] = f'{symbol} with TimeFrame {timeframe} Bullish divergence'
+            divergence_results[signal_id.item()] = f'{symbol} with TimeFrame {timeframe} Bullish divergence'
         elif price2 > price1 and macd1 > macd2 and rsi1 > rsi2:
-            divergence_results[signal_id] = f'{symbol} with TimeFrame {timeframe} Bearish divergence'
+            divergence_results[signal_id.item()] = f'{symbol} with TimeFrame {timeframe} Bearish divergence'
 
     return divergence_results

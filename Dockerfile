@@ -12,13 +12,7 @@ FROM python:3.10-slim
 WORKDIR /home/benyamin/PycharmProjects/CosmoTrade
 
 # Copy Python scripts into the container
-COPY divergence.py fibonacci.py Ichimoku_cloud.py main.py moving_average.py rates.py telegram_bot.py ./
-
-# Copy the symbols folder (ensure this folder exists in the build context)
-COPY symbols/ ./symbols/
-
-# Copy requirements file into the container (ensure you have a requirements.txt file)
-COPY requirements.txt ./
+COPY . /cosmotrade/
 
 # Install Python dependencies
 RUN pip install --no-cache-dir -r requirements.txt

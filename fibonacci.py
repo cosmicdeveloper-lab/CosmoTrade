@@ -16,6 +16,6 @@ def get_fibo(df):
         timestamp = group['timestamp'].iloc[-1]
 
         if abs(fibo - price) < 0.01:
-            fibo_result[timestamp] = f'{symbol} with Timeframe {timeframe} Strong potential zone'
+            fibo_result[timestamp.item()] = f'{symbol} with Timeframe {timeframe} Strong potential zone'
 
     return fibo_result

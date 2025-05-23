@@ -1,55 +1,72 @@
 <p align="center">
-  <img src="https://drive.google.com/uc?id=1CUvzom-CVovmeokZdIUezPInMsqdz8W3" alt="CosmoTrade Logo"/>
+  <img src="https://drive.google.com/uc?id=1CUvzom-CVovmeokZdIUezPInMsqdz8W3" alt="CosmoTrade Logo" width="200"/>
 </p>
 
-<h1 align="center">CosmoTrade</h1>
+<h1 align="center">🚀 CosmoTrade</h1>
+<h3 align="center">An Automated Crypto Signal Bot for Telegram Using Technical Indicators</h3>
 
+<p align="center">
+  <a href="#features">Features</a> •
+  <a href="#installation">Installation</a> •
+  <a href="#usage">Usage</a> •
+  <a href="#example-signal">Example</a> •
+  <a href="#contributing">Contributing</a> •
+  <a href="#license">License</a>
+</p>
 
-## 📈 Telegram Crypto Trade Signal Bot
+---
 
-- CosmoTrade is an automated crypto trading signal bot that uses multiple technical indicators to send real-time alerts to Telegram. Ideal for crypto enthusiasts, traders, and developers.
+## 📈 Overview
+
+**CosmoTrade** is a fully automated crypto trading signal bot that analyzes market trends using multiple technical indicators and delivers real-time alerts to your Telegram chat. Designed for crypto traders, developers, and enthusiasts, it supports multiple exchanges and strategies, all while being lightweight and easy to deploy.
+
 ---
 
 ## 🚀 Features
 
-- 📡 Fetches price data for the top 30 coins
-- 📊 Runs multiple technical analysis strategies:
+- 📡 Real-time price data for top 30 cryptocurrencies  
+- 🔍 Multiple technical analysis strategies:
   - RSI & MACD Divergence
-  - Ichimoku Cloud signals
-  - Moving Average Crosses
-  - Fibonacci 0.618 level
-- 📤 Sends formatted messages to your Telegram bot
-- 🪐 Avoids duplicate signals
-- 🐳 Optional Docker support for deployment
-- ☁️ VPS-friendly: lightweight & runs 24/7
+  - Ichimoku Cloud Breakouts
+  - Moving Average Crosses (7/25/99)
+  - Fibonacci 0.618 Levels
+- 📤 Automatically sends formatted signals to your Telegram bot
+- 🪐 Duplicate signal prevention
+- 🐳 Docker support for simplified deployment
+- ☁️ Lightweight & VPS-friendly (24/7 operation)
+- 🧾 Built-in Flask app to view signals and maintain a trading journal
 
 ---
-## 🧠 Logic
 
-- Divergence (RSI & MACD):
-    - A divergence occurs when the price moves in one direction while indicators like RSI and MACD move in the opposite direction. For example, if the price rises but RSI and MACD fall, this can signal a potential reversal.
+## 🧠 Strategy Logic
 
-- Ichimoku Cloud:
-    - When the lagging span, conversion line, base line, and price all break out of the Ichimoku Cloud (either above or below), it may indicate a strong trading signal—above the cloud suggests a buy signal, below suggests a sell signal.
+**Divergence Detection (RSI & MACD):**  
+When price movement conflicts with indicator direction (e.g., rising price but falling RSI/MACD), this may indicate an upcoming reversal.
 
-- Moving Average Crosses:
-    - When short-term (7), mid-term (25), and long-term (99) moving averages cross in a specific order (e.g., 7 > 25 > 99), it often signals a bullish trend. Conversely, 99 > 25 > 7 indicates a bearish trend.
+**Ichimoku Cloud Breakouts:**  
+Signals are triggered when key Ichimoku components break above or below the cloud, indicating strong buy/sell opportunities.
 
-- Fibonacci Level (0.618):
-    - The 0.618 Fibonacci retracement level is a commonly watched point of resistance or support. Price reactions around this level can suggest potential reversals or continuation.
+**Moving Average Crossovers:**  
+Bullish: `7 > 25 > 99`  
+Bearish: `99 > 25 > 7`
 
-- ⚠️ Caution:
-  - These are not guaranteed signals. Always verify and analyze the market independently before making any trading decisions.
+**Fibonacci Retracement (0.618):**  
+Monitors price behavior around the 0.618 level, commonly used for reversals or support/resistance.
+
+> ⚠️ **Disclaimer:** This bot is for informational purposes. Always conduct independent market analysis before trading.
 
 ---
 
 ## 📦 Requirements
 
 - Python 3.8+
-- Telegram bot token + chat ID
-- Optional: Docker (for containerized setup)
+- `pip` or Docker
+- Telegram Bot Token and Chat ID
+- Flask (for journal interface)
+- `.env` file with exchange and credentials
 
 ---
+
 
 ## 🛠️ Setup Instructions
 
@@ -115,8 +132,11 @@ docker run -d --env-file .env --restart always cosmotrade
 ## 📸 Example Signal
 
 Here's what a typical signal looks like in Telegram:
+routes /signals/   /jornal/
 
-![CosmoTrade Signal Screenshot](https://drive.google.com/uc?id=1nnmfVOSD7a3ox4nY8n6bsguXqvwVmWJR)
+![CosmoTrade Signal Screenshot](https://drive.google.com/uc?id=1nnmfVOSD7a3ox4nY8n6bsguXqvwVmWJR, 
+https://drive.google.com/uc?id=1ITpNnZ-5R_9eM2cqasAZGUM5RgJHZOby,
+https://drive.google.com/uc?id=1-ZvmWb9rmhV29XCbcPRt_v_DjqZASD0P)
 
 ## Run tests
 ```bash
