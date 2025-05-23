@@ -131,8 +131,9 @@ docker run -d --env-file .env --restart always cosmotrade
 
 ## 📸 Example Signal
 
-Here's what a typical signal looks like in Telegram:
-routes /signals/   /jornal/
+Sample output delivered via Telegram:
+
+Routes available: /signals/, /journal/
 
 ![CosmoTrade Signal Screenshot](https://drive.google.com/uc?id=1nnmfVOSD7a3ox4nY8n6bsguXqvwVmWJR)
 
