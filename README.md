@@ -98,7 +98,7 @@ brew services start redis
 docker run -d --name redis -p 6379:6379 redis
 ```
 > ⚠️ **Disclaimer:** Make sure Redis is running and accessible before starting the bot..
-
+---
 
 ## 🛠️ Setup Instructions
 
