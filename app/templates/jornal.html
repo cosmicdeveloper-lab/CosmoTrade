@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Trade Journal</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-pastel-blue min-h-screen py-10 px-6">
+
+    <div class="max-w-6xl mx-auto">
+        <h1 class="text-3xl font-bold text-center text-pastel-purple mb-8">Trade Journal</h1>
+
+        <div class="bg-white rounded-xl shadow p-6 mb-8">
+            <h2 class="text-xl font-semibold text-pastel-indigo mb-2">Total Profit</h2>
+            <p class="text-2xl font-bold text-green-600">
+                {{ total_profit | round(2) }}%
+            </p>
+        </div>
+
+        <!-- Filter Form -->
+<form method="GET" action="{{ url_for('positions') }}"
+      class="mb-8 bg-white rounded-xl shadow p-6 flex flex-col md:flex-row gap-4 items-end">
+    <div class="flex-1">
+        <label class="block text-sm font-medium text-pastel-indigo mb-1">Filter by Strategy</label>
+        <select name="strategy" class="w-full px-3 py-2 rounded border">
+            <option value="">All</option>
+            {% set strategies = trades | map(attribute='choice') | list | unique %}
+            {% for strategy in strategies %}
+                <option value="{{ strategy }}" {% if strategy_filter == strategy %}selected{% endif %}>
+                    {{ strategy }}
+                </option>
+            {% endfor %}
+        </select>
+    </div>
+
+    <div class="flex-1">
+        <label class="block text-sm font-medium text-pastel-indigo mb-1">Filter by Date</label>
+        <input type="date" name="date"
+               value="{{ date_filter or '' }}"
+               class="w-full px-3 py-2 rounded border" />
+    </div>
+
+    <button type="submit"
+            class="bg-pastel-indigo hover:bg-indigo-500 text-white font-semibold py-2 px-6 rounded">
+        Apply Filters
+    </button>
+</form>
+
+        <div class="space-y-6">
+            {% for trade in trades %}
+                <div class="bg-pastel-yellow rounded-xl shadow p-6 grid grid-cols-1 md:grid-cols-7 gap-4 items-center">
+                    <div>
+                        <span class="font-semibold text-pastel-gray">Signal:</span><br>
+                        {{ trade.signal }}
+                    </div>
+                    <div>
+                        <span class="font-semibold text-pastel-gray">Amount:</span><br>
+                        {{ trade.amount }}
+                    </div>
+                    <div>
+                        <span class="font-semibold text-pastel-gray">Entry:</span><br>
+                        {{ trade.entry }}
+                    </div>
+                    <div>
+                        <span class="font-semibold text-pastel-gray">Close:</span><br>
+                        {{ trade.close }}
+                    </div>
+                    <div>
+                        <span class="font-semibold text-pastel-gray">Strategy:</span><br>
+                        {{ trade.choice }}
+                    </div>
+                    <div>
+                        <span class="font-semibold text-pastel-gray">Profit:</span><br>
+                        <span class="{{ 'text-green-600' if trade.profit >= 0 else 'text-red-600' }}">
+                            {{ trade.profit | round(2) }}%
+                        </span>
+                    </div>
+                    <div>
+                        <form method="POST" action="{{ url_for('delete_position', index=loop.index0) }}">
+                            <button type="submit"
+                                    class="bg-red-400 hover:bg-red-500 text-white font-semibold py-2 px-4 rounded">
+                                Delete
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            {% else %}
+                <div class="text-center text-gray-500 mt-10">No trades recorded yet.</div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <style>
+        .bg-pastel-blue { background-color: #f0f4ff; }
+        .text-pastel-purple { color: #a78bfa; }
+        .text-pastel-indigo { color: #7c3aed; }
+        .bg-pastel-yellow { background-color: #fefcbf; }
+        .text-pastel-gray { color: #6b7280; }
+    </style>
+
+</body>
+</html>

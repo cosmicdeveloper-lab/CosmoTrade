@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Trading Signals</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-pastel-blue min-h-screen py-10 px-6">
+
+    <div class="max-w-6xl mx-auto">
+        <h1 class="text-3xl font-bold text-center text-pastel-purple mb-8">Trading Signals</h1>
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <div class="flash-message mb-4 p-4 rounded shadow transition-opacity duration-500 {{ 'bg-pastel-green' if category == 'success' else 'bg-pastel-red' }}">
+                    <p class="text-sm">{{ message }}</p>
+                </div>
+            {% endfor %}
+        {% endif %}
+        {% endwith %}
+
+        {% for category, signals in signal_sets.items() %}
+            <div class="bg-white rounded-2xl shadow p-6 space-y-6 mb-10">
+                <h2 class="text-xl font-semibold text-pastel-indigo">{{ category }}</h2>
+
+                {% for signal in signals %}
+                    <form method="POST" class="grid grid-cols-1 md:grid-cols-7 items-center gap-4 bg-pastel-yellow p-4 rounded-lg">
+                        {{ form.hidden_tag() }}
+
+                        <input type="hidden" name="signal" value="{{ signal }}">
+                        <input type="hidden" name="category" value="{{ category }}">
+
+                        <div class="md:col-span-1 font-medium text-pastel-gray break-words">
+                            {{ signal }}
+                        </div>
+
+                        <div>
+                            {{ form.amount(class="w-full px-3 py-2 rounded border", placeholder="Amount") }}
+                        </div>
+                        <div>
+                            {{ form.entry(class="w-full px-3 py-2 rounded border", placeholder="Entry") }}
+                        </div>
+                        <div>
+                            {{ form.close(class="w-full px-3 py-2 rounded border", placeholder="Close") }}
+                        </div>
+                        <div>
+                            {{ form.strategy(class="w-full px-3 py-2 rounded border") }}
+                        </div>
+                        <div>
+                            <button type="submit" class="bg-pastel-indigo hover:bg-indigo-400 text-white font-semibold py-2 px-4 rounded">
+                                Submit
+                            </button>
+                        </div>
+                    </form>
+                {% endfor %}
+            </div>
+        {% endfor %}
+    </div>
+
+    <style>
+        .bg-pastel-blue { background-color: #f0f4ff; }
+        .bg-pastel-purple { color: #a78bfa; }
+        .text-pastel-purple { color: #a78bfa; }
+        .text-pastel-indigo { color: #7c3aed; }
+        .bg-pastel-yellow { background-color: #fefcbf; }
+        .bg-pastel-green { background-color: #d9f99d; }
+        .bg-pastel-red { background-color: #fecaca; }
+        .text-pastel-gray { color: #6b7280; }
+    </style>
+
+    <script>
+        // Auto-dismiss flash messages after 4 seconds
+        setTimeout(() => {
+            document.querySelectorAll('.flash-message').forEach(el => {
+                el.classList.add('opacity-0');
+                setTimeout(() => el.remove(), 500); // Fully remove after fade
+            });
+        }, 4000);
+    </script>
+
+</body>
+</html>
