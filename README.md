@@ -69,37 +69,6 @@ Monitors price behavior around the 0.618 level, commonly used for reversals or s
 
 ---
 
-## 🧰 Install Redis
-
-**Redis is required for managing state and caching signals.**
-
----
-
-### 🖥️ On Ubuntu/Debian:
-
-```bash
-sudo apt update
-sudo apt install redis-server
-
-sudo systemctl enable redis-server
-sudo systemctl start redis-server
-```
-
-### 🍎 On macOS (using Homebrew):
-
-```bash
-brew install redis
-brew services start redis
-```
-
-### 🐳 Docker Alternative:
-
-```bash
-docker run -d --name redis -p 6379:6379 redis
-```
-> ⚠️ **Disclaimer:** Make sure Redis is running and accessible before starting the bot..
----
-
 ## 🛠️ Setup Instructions
 
 ### 1. Clone the repo
@@ -123,9 +92,36 @@ TELEGRAM_TOKEN=your_bot_token
 CHAT_ID=your_chat_id
 EXCHANGE=your_exchange_name(coinex, kucoin, binance, ...)
 WTF_SECRET_KEY=YOUR_SECRET_KEY
+REDIS_HOST=YOUR_HOST
+REDIS_PORT=YOUR_PORT
 ```
 
-### 4. Run the Bot (Basic)
+### 4. Install Redis
+
+**Redis is required for managing state and caching signals.**
+
+---
+
+### 🖥️ On Ubuntu/Debian:
+
+```bash
+sudo apt update
+sudo apt install redis-server
+
+sudo systemctl enable redis-server
+sudo systemctl start redis-server
+```
+
+### 🍎 On macOS (using Homebrew):
+
+```bash
+brew install redis
+brew services start redis
+```
+> ⚠️ **Disclaimer:** Make sure Redis is running and accessible before starting the bot..
+
+
+### 5. Run the Bot (Basic)
 
 ```bash
 python main.py
@@ -140,13 +136,7 @@ git clone https://github.com/cosmicdeveloper-lab/cosmotrade.git
 cd cosmotrade
 ```
 
-### 2. Build the image
-
-```bash
-docker build -t cosmotrade .
-```
-
-### 3. Create a .env file
+### 2. Create a .env file
 more about the exchanges https://docs.ccxt.com/#/
 
 ```bash
@@ -154,13 +144,14 @@ TELEGRAM_TOKEN=your_bot_token
 CHAT_ID=your_chat_id
 EXCHANGE=your_exchange_name(coinex, kucoin, binance, ...)
 WTF_SECRET_KEY=YOUR_SECRET_KEY
+REDIS_HOST=YOUR_HOST
+REDIS_PORT=YOUR_PORT
 ```
 
-### 4. Run the container
-Running constantly and auto restart
+### 3. Run the container
 
 ```bash
-docker run -d --env-file .env --restart always cosmotrade
+docker-compose up --build -d
 ```
 
 ## 📸 Example Signal

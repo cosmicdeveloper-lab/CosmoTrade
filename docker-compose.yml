@@ -1,15 +1,26 @@
-version: "3.8"
+version: '3.8'
 
 services:
-  app:
-    build: .
-    depends_on:
-      - redis
-    environment:
-      - REDIS_HOST=redis
-    command: ["python3", "main.py"]
-
   redis:
-    image: redis:7
+    image: redis:latest
+    container_name: redis
     ports:
       - "6379:6379"
+
+  app:
+    build:
+      context: .
+    container_name: cosmotrade
+    restart: always
+    depends_on:
+      - redis
+    ports:
+      - "5000:5000"
+    environment:
+      TELEGRAM_TOKEN: ${TELEGRAM_TOKEN}
+      CHAT_ID: ${CHAT_ID}
+      EXCHANGE: ${EXCHANGE}
+      WTF_SECRET_KEY: ${WTF_SECRET_KEY}
+      REDIS_HOST: ${REDIS_HOST}
+      REDIS_PORT: ${REDIS_PORT}
+

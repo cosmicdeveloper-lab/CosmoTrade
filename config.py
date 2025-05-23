@@ -1,7 +1,14 @@
 import redis
 import logging
+import os
+from dotenv import load_dotenv
 
-r = redis.Redis(host='localhost', port=6379, decode_responses=True)
+load_dotenv()
+
+HOST = os.getenv("REDIS_HOST")
+PORT = int(os.getenv("REDIS_PORT"))
+
+r = redis.Redis(host=HOST, port=PORT, decode_responses=True)
 
 
 def setup_logger():

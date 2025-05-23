@@ -10,7 +10,7 @@ setup_logger()
 def main():
     run_bot = threading.Thread(target=send_signals)
     run_bot.start()
-    app.run()
+    app.run('0.0.0.0', 5000)
 
 
 if __name__ == '__main__':
