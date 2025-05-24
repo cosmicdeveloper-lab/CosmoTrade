@@ -27,8 +27,8 @@ def send_telegram_message(token, chat_id, message):
     requests.post(url, data=payload)
 
 
-def format_signal_dict(name):
-    signals = r.smembers(name)
+def format_signal_dict(name, new_signals):
+    signals = new_signals
     lines = []
     for signal in signals:
         lines.append(f'🦉 {signal}')
@@ -41,15 +41,16 @@ SIGNALS_KEY = 'signals_key'
 last_reset_time = time.time()
 
 
-RESET_INTERVAL_SECONDS = 72 * 60 * 60
+RESET_INTERVAL_SECONDS = 120 * 60 * 60
 
 
 def send_if_changed(name, new_data):
     global last_reset_time
     current_time = time.time()
 
-    # Reset sent signals every RESET_INTERVAL_SECONDS (72 hours in this case)
+    # Reset sent signals every RESET_INTERVAL_SECONDS (120 hours in this case)
     if current_time - last_reset_time > RESET_INTERVAL_SECONDS:
+        r.delete(SIGNALS_KEY)
         r.delete(name)
         last_reset_time = current_time
         logging.info('Signal memory cleared after 72 hours.')
@@ -59,13 +60,13 @@ def send_if_changed(name, new_data):
         sent_signals = r.smembers(SIGNALS_KEY)
 
         # Filter new signals: only those keys not in sent_signals.
-        new_signals = {k: v for k, v in new_data.items() if k not in sent_signals}
+        new_signals = {str(k): v for k, v in new_data.items() if str(k) not in sent_signals}
 
         if new_signals:
             # Add signals keys and values to separate reddis sets
             r.sadd(SIGNALS_KEY, *new_signals.keys())
             r.sadd(name, *new_signals.values())
-            format_signal_dict(name)
+            format_signal_dict(name, new_signals.values())
             logging.info('Signal with new keys: %s', list(new_signals.keys()))
         else:
             logging.info('No new signals.')
