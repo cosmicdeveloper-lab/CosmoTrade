@@ -27,16 +27,6 @@ def send_telegram_message(token, chat_id, message):
     requests.post(url, data=payload)
 
 
-def format_signal_dict(name, new_signals):
-    signals = new_signals
-    lines = []
-    for signal in signals:
-        lines.append(f'🦉 {signal}')
-    message_body = '\n'.join(lines)
-    message = f"\n📌 *{name}*\n{message_body}"
-    send_telegram_message(TOKEN, CHAT_ID, message)
-
-
 SIGNALS_KEY = 'signals_key'
 last_reset_time = time.time()
 
@@ -47,27 +37,29 @@ RESET_INTERVAL_SECONDS = 120 * 60 * 60
 def send_if_changed(name, new_data):
     global last_reset_time
     current_time = time.time()
+    lines = []
 
     # Reset sent signals every RESET_INTERVAL_SECONDS (120 hours in this case)
     if current_time - last_reset_time > RESET_INTERVAL_SECONDS:
         r.delete(SIGNALS_KEY)
         r.delete(name)
         last_reset_time = current_time
-        logging.info('Signal memory cleared after 72 hours.')
+        logging.info('Signal memory cleared after 120 hours.')
 
     if new_data is not None:
-        # Retrieve sent signals (these will be returned as a set)
-        sent_signals = r.smembers(SIGNALS_KEY)
+        for signal_key, signal_value in new_data.items():
+            signal_key_str = str(signal_key)
 
-        # Filter new signals: only those keys not in sent_signals.
-        new_signals = {str(k): v for k, v in new_data.items() if str(k) not in sent_signals}
+            if not r.sismember(SIGNALS_KEY, signal_key_str):
+                lines.append(f'🦉 {signal_value}')
+                r.sadd(SIGNALS_KEY, signal_key_str)
+                r.sadd(name, signal_value)
 
-        if new_signals:
-            # Add signals keys and values to separate reddis sets
-            r.sadd(SIGNALS_KEY, *new_signals.keys())
-            r.sadd(name, *new_signals.values())
-            format_signal_dict(name, new_signals.values())
-            logging.info('Signal with new keys: %s', list(new_signals.keys()))
+        if lines:
+            message_body = '\n'.join(lines)
+            message = f"\n📌 *{name}*\n{message_body}"
+            send_telegram_message(TOKEN, CHAT_ID, message)
+            logging.info('Signal with new keys: %s', lines)
         else:
             logging.info('No new signals.')
 
