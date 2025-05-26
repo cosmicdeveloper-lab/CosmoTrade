@@ -15,7 +15,7 @@ services:
     depends_on:
       - redis
     expose:
-      - "5000"  # use expose, not ports (internal only)
+      - "5000"
     environment:
       TELEGRAM_TOKEN: ${TELEGRAM_TOKEN}
       CHAT_ID: ${CHAT_ID}
