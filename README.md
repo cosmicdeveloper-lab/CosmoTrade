@@ -147,10 +147,11 @@ WTF_SECRET_KEY=YOUR_SECRET_KEY
 REDIS_HOST=YOUR_HOST
 REDIS_PORT=YOUR_PORT
 ```
-### 3. Add your domain to nginx.conf
+### 3. Add your domain and ssl path
 
 ```bash
 nano nginx.conf
+nano docker-compose.yml
 ```
 
 ### 4. Run the container
