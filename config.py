@@ -8,7 +8,8 @@ load_dotenv()
 HOST = os.getenv("REDIS_HOST")
 PORT = int(os.getenv("REDIS_PORT"))
 
-r = redis.Redis(host=HOST, port=PORT, decode_responses=True)
+pool = redis.ConnectionPool(host=HOST, port=PORT)
+r = redis.Redis(connection_pool=pool, decode_responses=True)
 
 
 def setup_logger():
