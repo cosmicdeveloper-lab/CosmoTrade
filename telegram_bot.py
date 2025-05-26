@@ -52,6 +52,7 @@ def send_if_changed(name, new_data):
 
             if not r.sismember(SIGNALS_KEY, signal_key_str):
                 lines.append(f'🦉 {signal_value}')
+                logging.info('Signal with new keys: %s', signal_key_str)
                 r.sadd(SIGNALS_KEY, signal_key_str)
                 r.sadd(name, signal_value)
 
@@ -59,7 +60,6 @@ def send_if_changed(name, new_data):
             message_body = '\n'.join(lines)
             message = f"\n📌 *{name}*\n{message_body}"
             send_telegram_message(TOKEN, CHAT_ID, message)
-            logging.info('Signal with new keys: %s', lines)
         else:
             logging.info('No new signals.')
 
