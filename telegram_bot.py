@@ -31,7 +31,7 @@ SIGNALS_KEY = 'signals_key'
 last_reset_time = time.time()
 
 
-RESET_INTERVAL_SECONDS = 120 * 60 * 60
+RESET_INTERVAL_SECONDS = 72 * 60 * 60
 
 
 def send_if_changed(name, new_data):
@@ -39,7 +39,7 @@ def send_if_changed(name, new_data):
     current_time = time.time()
     lines = []
 
-    # Reset sent signals every RESET_INTERVAL_SECONDS (120 hours in this case)
+    # Reset sent signals every RESET_INTERVAL_SECONDS (72 hours in this case)
     if current_time - last_reset_time > RESET_INTERVAL_SECONDS:
         r.delete(SIGNALS_KEY)
         r.delete(name)
