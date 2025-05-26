@@ -47,8 +47,15 @@ services:
     volumes:
       - ./certbot/conf:/etc/letsencrypt
       - ./certbot/www:/var/www/certbot
-    entrypoint: >
-      /bin/sh -c '
-      sleep 10 &&
-      certbot certonly --webroot 
-        -w /var/www/ce
+    entrypoint:
+      - /bin/sh
+      - -c
+      - |
+        sleep 10 && \
+        certbot certonly --webroot \
+          -w /var/www/certbot \
+          -d ${DOMAIN} \
+          -d ${SUBDOMAIN} \
+          --email ${EMAIL} \
+          --agree-tos \
+          --non-interactive
