@@ -4,7 +4,7 @@ from Ichimoku_cloud import ichimoku_signal
 from moving_average import sma_cross
 from fibonacci import get_fibo
 from rates import get_all_rates
-from config import r
+from config import wait_for_redis
 import time
 from dotenv import load_dotenv
 import os
@@ -14,7 +14,7 @@ import requests
 load_dotenv()
 TOKEN = os.getenv('TELEGRAM_TOKEN')
 CHAT_ID = os.getenv('CHAT_ID')
-
+r = wait_for_redis()
 
 def send_telegram_message(token, chat_id, message):
     logging.info('Sending to Telegram...')

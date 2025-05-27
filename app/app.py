@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, flash, url_for, redirect
-from config import r
+from config import wait_for_redis
 from flask_wtf import CSRFProtect
 from app.forms import PositionsForm
 from app.utils import calculate_profit
@@ -10,6 +10,7 @@ import os
 import logging
 
 load_dotenv()
+r = wait_for_redis()
 
 app = Flask(__name__)
 app.secret_key = os.getenv('WTF_SECRET_KEY')
