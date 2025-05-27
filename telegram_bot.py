@@ -16,6 +16,7 @@ TOKEN = os.getenv('TELEGRAM_TOKEN')
 CHAT_ID = os.getenv('CHAT_ID')
 r = wait_for_redis()
 
+
 def send_telegram_message(token, chat_id, message):
     logging.info('Sending to Telegram...')
     url = f'https://api.telegram.org/bot{token}/sendMessage'
@@ -54,9 +55,10 @@ def send_if_changed(name, new_data):
             if not r.sismember(SIGNALS_KEY, signal_key_str):
                 if signal_value not in seen_signals:
                     lines.append(f'🦉 {signal_value}')
-                    logging.info('Signal with new keys: %s', signal_key_str)
                     r.sadd(SIGNALS_KEY, signal_key_str)
                     r.sadd(name, signal_value)
+                    logging.info("SIGNALS_KEY members: %s", r.smembers(SIGNALS_KEY))
+                    logging.info("%s members: %s", name, r.smembers(name))
 
         if lines:
             message_body = '\n'.join(lines)
