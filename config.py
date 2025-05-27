@@ -30,3 +30,6 @@ def wait_for_redis(retries=5, delay=2):
             logging.warning("Redis connection attempt %d failed: %s", i + 1, e)
             time.sleep(delay)
     raise ConnectionError(f"Could not connect to Redis at {HOST}:{PORT} after {retries} attempts.")
+
+
+setup_logger()

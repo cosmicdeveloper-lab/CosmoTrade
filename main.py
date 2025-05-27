@@ -4,9 +4,6 @@ from app.app import app
 import threading
 
 
-setup_logger()
-
-
 def main():
     run_bot = threading.Thread(target=send_signals)
     run_bot.start()
