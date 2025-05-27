@@ -80,6 +80,7 @@ def filter_data(name, new_data):
                 new_signals[signal_key_str] = signal_value
                 r.sadd(SIGNALS_KEY, signal_key_str)
         format_msg(name, new_signals)
+        new_signals.clear()
 
 
 def send_signals():
