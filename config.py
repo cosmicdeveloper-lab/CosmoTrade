@@ -22,7 +22,7 @@ def wait_for_redis(retries=5, delay=2):
     for i in range(retries):
         try:
             pool = redis.ConnectionPool(host=HOST, port=PORT, decode_responses=True)
-            client = redis.Redis(connection_pool=pool, decode_responses=True)
+            client = redis.Redis(connection_pool=pool, decode_responses=True, db=0)
             client.ping()
             logging.info("Connected to Redis on attempt %d", i + 1)
             return client
