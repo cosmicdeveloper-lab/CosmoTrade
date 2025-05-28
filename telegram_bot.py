@@ -14,7 +14,6 @@ load_dotenv()
 TOKEN = os.getenv('TELEGRAM_TOKEN')
 CHAT_ID = os.getenv('CHAT_ID')
 logger = logging.getLogger(__name__)
-r = wait_for_redis()
 
 
 def send_telegram_message(token, chat_id, message):
@@ -46,10 +45,6 @@ def format_msg(name, new_signals):
 
 
 SIGNALS_KEY = 'signals_key'
-last_reset_time = time.time()
-
-
-RESET_INTERVAL_SECONDS = 168 * 60 * 60
 
 
 def filter_data(name, new_data):
@@ -58,17 +53,9 @@ def filter_data(name, new_data):
     and update the redis key set
     Reset all the signals every week
     """
-    global last_reset_time
-    current_time = time.time()
-
-    if current_time - last_reset_time > RESET_INTERVAL_SECONDS:
-        r.delete(SIGNALS_KEY)
-        r.delete(name)
-        last_reset_time = current_time
-        logger.info('Signal memory cleared after a week.')
 
     if new_data is not None:
-        sent_signals = r.smembers(SIGNALS_KEY)
+        sent_signals = wait_for_redis().smembers(SIGNALS_KEY)
         logger.info(f'SENT SIGNALS:{sent_signals}')
 
         new_signals = {}
@@ -78,10 +65,16 @@ def filter_data(name, new_data):
 
             if signal_key_str not in sent_signals:
                 new_signals[signal_key_str] = signal_value
-                r.sadd(SIGNALS_KEY, signal_key_str)
-                r.sadd(name, signal_value)
+                wait_for_redis().sadd(SIGNALS_KEY, signal_key_str)
+                wait_for_redis().sadd(name, signal_value)
         logger.info(f'New signals: {new_signals}')
         format_msg(name, new_signals)
+
+
+def reset_redis():
+    wait_for_redis().delete(SIGNALS_KEY)
+    wait_for_redis().delete(name)
+    logger.info('Signal memory cleared after a week.')
 
 
 def send_signals():
