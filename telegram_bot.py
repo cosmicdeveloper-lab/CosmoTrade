@@ -35,7 +35,6 @@ def format_msg(name, new_signals):
         for value in new_signals.values():
             logger.info(f'{value} is new')
             lines.add(f'🦉 {value}')
-            r.sadd(name, value)
 
     if lines:
         message_body = '\n'.join(lines)
@@ -80,6 +79,7 @@ def filter_data(name, new_data):
             if signal_key_str not in sent_signals:
                 new_signals[signal_key_str] = signal_value
                 r.sadd(SIGNALS_KEY, signal_key_str)
+                r.sadd(name, signal_value)
         logger.info(f'New signals: {new_signals}')
         format_msg(name, new_signals)
 
