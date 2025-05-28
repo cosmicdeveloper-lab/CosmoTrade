@@ -14,6 +14,7 @@ load_dotenv()
 TOKEN = os.getenv('TELEGRAM_TOKEN')
 CHAT_ID = os.getenv('CHAT_ID')
 logger = logging.getLogger(__name__)
+r = wait_for_redis()
 
 
 def send_telegram_message(token, chat_id, message):
@@ -27,23 +28,6 @@ def send_telegram_message(token, chat_id, message):
     requests.post(url, data=payload)
 
 
-def format_msg(name, new_signals):
-    lines = set()
-
-    if new_signals:
-        for value in new_signals.values():
-            logger.info(f'{value} is new')
-            lines.add(f'🦉 {value}')
-
-    if lines:
-        message_body = '\n'.join(lines)
-        message = f"\n📌 *{name}*\n{message_body}"
-        send_telegram_message(TOKEN, CHAT_ID, message)
-
-    else:
-        logger.info('No new signals.')
-
-
 SIGNALS_KEY = 'signals_key'
 
 
@@ -51,7 +35,6 @@ def filter_data(name, new_data):
     """
     This function prevent repetitive signals
     and update the redis key set
-    Reset all the signals every week
     """
 
     if new_data is not None:
@@ -65,15 +48,27 @@ def filter_data(name, new_data):
 
             if signal_key_str not in sent_signals:
                 new_signals[signal_key_str] = signal_value
-                wait_for_redis().sadd(SIGNALS_KEY, signal_key_str)
-                wait_for_redis().sadd(name, signal_value)
+                r.sadd(SIGNALS_KEY, signal_key_str)
+                r.sadd(name, signal_value)
         logger.info(f'New signals: {new_signals}')
-        format_msg(name, new_signals)
+
+        lines = set()
+
+        if new_signals:
+            for value in new_signals.values():
+                logger.info(f'{value} is new')
+                lines.add(f'🦉 {value}')
+
+            message_body = '\n'.join(lines)
+            message = f"\n📌 *{name}*\n{message_body}"
+            send_telegram_message(TOKEN, CHAT_ID, message)
+        else:
+            logger.info('No new signals.')
 
 
 def reset_redis():
-    wait_for_redis().delete(SIGNALS_KEY)
-    wait_for_redis().delete(name)
+    r.delete(SIGNALS_KEY)
+    r.delete(name)
     logger.info('Signal memory cleared after a week.')
 
 
