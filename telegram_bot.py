@@ -70,6 +70,7 @@ def filter_data(name, new_data):
 
     if new_data is not None:
         sent_signals = r.smembers(SIGNALS_KEY)
+        logger.info(f'SENT SIGNALS:{sent_signals}')
 
         new_signals = {}
 
@@ -79,15 +80,13 @@ def filter_data(name, new_data):
             if signal_key_str not in sent_signals:
                 new_signals[signal_key_str] = signal_value
                 r.sadd(SIGNALS_KEY, signal_key_str)
+        logger.info(f'New signals: {new_signals}')
         format_msg(name, new_signals)
-        new_signals.clear()
 
 
 def send_signals():
-    while True:
-        dataframe = get_all_rates()
-        filter_data('Divergence', find_divergence(dataframe))
-        filter_data('SMA Cross', sma_cross(dataframe))
-        filter_data('Fibonacci', get_fibo(dataframe))
-        filter_data('Ichimoku Cloud', ichimoku_signal(dataframe))
-        time.sleep(3600)
+    dataframe = get_all_rates()
+    filter_data('Divergence', find_divergence(dataframe))
+    filter_data('SMA Cross', sma_cross(dataframe))
+    filter_data('Fibonacci', get_fibo(dataframe))
+    filter_data('Ichimoku Cloud', ichimoku_signal(dataframe))

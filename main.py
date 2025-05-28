@@ -1,12 +1,13 @@
+from apscheduler.schedulers.background import BackgroundScheduler
 from telegram_bot import send_signals
 from config import setup_logger
 from app.app import app
-import threading
 
 
 def main():
-    run_bot = threading.Thread(target=send_signals)
-    run_bot.start()
+    scheduler = BackgroundScheduler()
+    scheduler.add_job(send_signals, 'interval', hour=1)
+    scheduler.start()
     app.run('0.0.0.0', 5000)
 
 
