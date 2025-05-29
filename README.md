@@ -100,8 +100,6 @@ REDIS_PORT=YOUR_PORT #6379
 
 **Redis is required for managing state and caching signals.**
 
----
-
 ### 🖥️ On Ubuntu/Debian:
 
 ```bash
