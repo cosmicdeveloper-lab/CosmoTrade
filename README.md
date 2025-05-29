@@ -169,14 +169,14 @@ sudo systemctl start redis-server
 ```
 > ⚠️ **Disclaimer:** Make sure Redis is running and accessible before starting the bot..
 
-### 4. Add a password or Disable Protected Mode
+### 5. Add a password or Disable Protected Mode
 
 ```bash
 sudo nano /etc/redis/redis.conf
 ```
 
 
-### 5. Run the container
+### 6. Run the container
 
 ```bash
 docker-compose up --build -d
