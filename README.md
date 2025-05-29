@@ -92,8 +92,8 @@ TELEGRAM_TOKEN=your_bot_token
 CHAT_ID=your_chat_id
 EXCHANGE=your_exchange_name(coinex, kucoin, binance, ...)
 WTF_SECRET_KEY=YOUR_SECRET_KEY
-REDIS_HOST=YOUR_HOST
-REDIS_PORT=YOUR_PORT
+REDIS_HOST=YOUR_HOST #localhost
+REDIS_PORT=YOUR_PORT #6379
 ```
 
 ### 4. Install Redis
@@ -144,8 +144,8 @@ TELEGRAM_TOKEN=your_bot_token
 CHAT_ID=your_chat_id
 EXCHANGE=your_exchange_name(coinex, kucoin, binance, ...)
 WTF_SECRET_KEY=YOUR_SECRET_KEY
-REDIS_HOST=YOUR_HOST
-REDIS_PORT=YOUR_PORT
+REDIS_HOST=YOUR_HOST #172.17.0.1
+REDIS_PORT=YOUR_PORT #6379
 ```
 ### 3. Add your domain and ssl path
 
@@ -154,7 +154,31 @@ nano nginx.conf
 nano docker-compose.yml
 ```
 
-### 4. Run the container
+### 4. Install Redis
+
+**Redis is required for managing state and caching signals.**
+
+---
+
+### 🖥️ On Ubuntu/Debian:
+
+```bash
+sudo apt update
+sudo apt install redis-server
+
+sudo systemctl enable redis-server
+sudo systemctl start redis-server
+```
+> ⚠️ **Disclaimer:** Make sure Redis is running and accessible before starting the bot..
+
+### 4. Add a password or Disable Protected Mode
+
+```bash
+sudo nano /etc/redis/redis.conf
+```
+
+
+### 5. Run the container
 
 ```bash
 docker-compose up --build -d
