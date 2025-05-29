@@ -1,23 +1,11 @@
 version: '3.8'
 
 services:
-  redis:
-    image: redis:latest
-    container_name: redis
-    ports:
-      - "6379:6379"
-    volumes:
-      - redis_data:/data
-    networks:
-      - backend
-
   app:
     build:
       context: .
     container_name: cosmotrade
     restart: always
-    depends_on:
-      - redis
     expose:
       - "5000"
     env_file:
@@ -39,9 +27,6 @@ services:
       - app
     networks:
       - backend
-
-volumes:
-  redis_data:
 
 networks:
   backend:
