@@ -149,7 +149,6 @@ REDIS_PORT=YOUR_PORT #6379
 
 ```bash
 nano nginx.conf
-nano docker-compose.yml
 ```
 
 ### 4. Install Redis
@@ -169,7 +168,7 @@ sudo systemctl start redis-server
 ```
 > ⚠️ **Disclaimer:** Make sure Redis is running and accessible before starting the bot..
 
-### 5. Add a password or Disable Protected Mode
+### 5. Add a password or Disable Protected Mode and bind 0.0.0.0
 
 ```bash
 sudo nano /etc/redis/redis.conf
