@@ -33,10 +33,10 @@ def filter_data(name, new_data):
     This function prevent repetitive signals
     and update the redis key set
     """
-    SIGNALS_KEY = f' {name}_signals_key'
+    SIGNALS_KEY = f'{name}_signals_key'
 
     if new_data is not None:
-        sent_signals = wait_for_redis().smembers(SIGNALS_KEY)
+        sent_signals = r.smembers(SIGNALS_KEY)
         logger.info(f'SENT SIGNALS:{sent_signals}')
 
         new_signals = {}
