@@ -15,8 +15,6 @@ TOKEN = os.getenv('TELEGRAM_TOKEN')
 CHAT_ID = os.getenv('CHAT_ID')
 logger = logging.getLogger(__name__)
 r = wait_for_redis()
-logger_info(f'REDIS INFO: {r.info()}')
-logger.info(f'REDIS used DB: {r.connection_pool.connection_kwargs.get('db')}')
 
 
 def send_telegram_message(token, chat_id, message):
