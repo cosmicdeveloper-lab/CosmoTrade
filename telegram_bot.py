@@ -15,6 +15,8 @@ TOKEN = os.getenv('TELEGRAM_TOKEN')
 CHAT_ID = os.getenv('CHAT_ID')
 logger = logging.getLogger(__name__)
 r = wait_for_redis()
+logger_info(f'REDIS INFO: {r.info()}')
+logger.info(f'REDIS used DB: {r.connection_pool.connection_kwargs.get('db')}')
 
 
 def send_telegram_message(token, chat_id, message):
@@ -28,14 +30,12 @@ def send_telegram_message(token, chat_id, message):
     requests.post(url, data=payload)
 
 
-SIGNALS_KEY = 'signals_key'
-
-
 def filter_data(name, new_data):
     """
     This function prevent repetitive signals
     and update the redis key set
     """
+    SIGNALS_KEY = f' {name}_signals_key'
 
     if new_data is not None:
         sent_signals = wait_for_redis().smembers(SIGNALS_KEY)
@@ -50,6 +50,7 @@ def filter_data(name, new_data):
                 new_signals[signal_key_str] = signal_value
                 r.sadd(SIGNALS_KEY, signal_key_str)
                 r.sadd(name, signal_value)
+                logger.info(f'Added {signal_key_str} to {SIGNALS_KEY}')
         logger.info(f'New signals: {new_signals}')
 
         lines = set()
