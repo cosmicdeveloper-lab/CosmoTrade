@@ -30,39 +30,26 @@ def send_telegram_message(token, chat_id, message):
 
 def filter_data(name, new_data):
     """
-    This function prevent repetitive signals
-    and update the redis key set
+    Prevents duplicate signals by storing seen keys in Redis.
+    Sends a Telegram notification only for new signals.
     """
     SIGNALS_KEY = f'{name}_signals_key'
+    new_signals = {}
 
-    if new_data is not None:
-        sent_signals = r.smembers(SIGNALS_KEY)
-        logger.info(f'SENT SIGNALS:{sent_signals}')
+    for signal_key, signal_value in new_data.items():
+        signal_key_str = str(signal_key)
+        if r.sadd(SIGNALS_KEY, signal_key_str):
+            new_signals[signal_key_str] = signal_value
+            r.sadd(name, signal_value)
 
-        new_signals = {}
-
-        for signal_key, signal_value in new_data.items():
-            signal_key_str = str(signal_key)
-
-            if signal_key_str not in sent_signals:
-                new_signals[signal_key_str] = signal_value
-                r.sadd(SIGNALS_KEY, signal_key_str)
-                r.sadd(name, signal_value)
-                logger.info(f'Added {signal_key_str} to {SIGNALS_KEY}')
+    if new_signals:
         logger.info(f'New signals: {new_signals}')
-
-        lines = set()
-
-        if new_signals:
-            for value in new_signals.values():
-                logger.info(f'{value} is new')
-                lines.add(f'🦉 {value}')
-
-            message_body = '\n'.join(lines)
-            message = f"\n📌 *{name}*\n{message_body}"
-            send_telegram_message(TOKEN, CHAT_ID, message)
-        else:
-            logger.info('No new signals.')
+        lines = {f'🦉 {value}' for value in new_signals.values()}
+        message_body = '\n'.join(lines)
+        message = f"\n📌 *{name}*\n{message_body}"
+        send_telegram_message(TOKEN, CHAT_ID, message)
+    else:
+        logger.info('No new signals.')
 
 
 def reset_redis():
