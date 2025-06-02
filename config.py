@@ -21,7 +21,7 @@ def setup_logger():
 def wait_for_redis(retries=5, delay=2):
     for i in range(retries):
         try:
-            client = redis.Redis(host=HOST, port=PORT, decode_responses=True, db=0, socket_keepalive=True)
+            client = redis.Redis(host=HOST, port=PORT, decode_responses=True, health_check_interval=30)
             client.ping()
             logging.info("Connected to Redis on attempt %d", i + 1)
             return client
