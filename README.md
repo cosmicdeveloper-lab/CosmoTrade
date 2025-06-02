@@ -125,62 +125,6 @@ brew services start redis
 python main.py
 ```
 
-## 🐳 Or Run with Docker
-
-### 1. Clone the repo
-
-```bash
-git clone https://github.com/cosmicdeveloper-lab/cosmotrade.git
-cd cosmotrade
-```
-
-### 2. Create a .env file
-more about the exchanges https://docs.ccxt.com/#/
-
-```bash
-TELEGRAM_TOKEN=your_bot_token
-CHAT_ID=your_chat_id
-EXCHANGE=your_exchange_name(coinex, kucoin, binance, ...)
-WTF_SECRET_KEY=YOUR_SECRET_KEY
-REDIS_HOST=YOUR_HOST #172.17.0.1
-REDIS_PORT=YOUR_PORT #6379
-```
-### 3. Add your domain and ssl path
-
-```bash
-nano nginx.conf
-```
-
-### 4. Install Redis
-
-**Redis is required for managing state and caching signals.**
-
----
-
-### 🖥️ On Ubuntu/Debian:
-
-```bash
-sudo apt update
-sudo apt install redis-server
-
-sudo systemctl enable redis-server
-sudo systemctl start redis-server
-```
-> ⚠️ **Disclaimer:** Make sure Redis is running and accessible before starting the bot..
-
-### 5. Add a password or Disable Protected Mode and bind 0.0.0.0
-
-```bash
-sudo nano /etc/redis/redis.conf
-```
-
-
-### 6. Run the container
-
-```bash
-docker-compose up --build -d
-```
-
 ## 📸 Example Signal
 
 Sample output delivered via Telegram:
