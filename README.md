@@ -32,7 +32,6 @@
   - Fibonacci 0.618 Levels
 - 📤 Automatically sends formatted signals to your Telegram bot
 - 🪐 Duplicate signal prevention
-- 🐳 Docker support for simplified deployment
 - ☁️ Lightweight & VPS-friendly (24/7 operation)
 - 🧾 Built-in Flask app to view signals and maintain a trading journal
 
