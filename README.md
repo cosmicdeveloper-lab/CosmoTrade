@@ -44,6 +44,7 @@ When price movement conflicts with indicator direction (e.g., rising price but f
 **Bollinger Band & RSI:**  
 Bullish: When the price is in lower band of the bollinger and rsi is less than 30
 Bearish: when the price is in upper band of the bollinger and rsi is more than 70
+
 **Moving Average Exponential Crossovers:**  
 Cross: 50=200
 
