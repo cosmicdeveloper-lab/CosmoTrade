@@ -31,24 +31,14 @@ def signals():
         - Amount, Entry, Close, Strategy (from WTForms)
         - Timestamp of entry
 
-    On successful form submission:
-        - Stores the entry as a JSON object in Redis list 'jornal'.
-        - Displays a success flash message and redirects back to the same page.
-
-    On failure:
-        - Displays an error flash message.
-
-    Returns:
-        Rendered HTML template 'signals.html'.
     """
     form = PositionsForm()
     now = datetime.now()
 
     signal_sets = {
         'Divergence': r.smembers('Divergence'),
-        'SMA Cross': r.smembers('SMA Cross'),
-        'Fibonacci': r.smembers('Fibonacci'),
-        'Ichimoku Cloud': r.smembers('Ichimoku Cloud')
+        'EMA Cross': r.smembers('EMA Cross'),
+        'Bollingersi': r.smembers('Bollingersi'),
     }
 
     if request.method == 'POST' and form.validate_on_submit():
@@ -90,10 +80,6 @@ def positions():
         - Calculates profit using a utility function
         - Adds parsed data to a list to be rendered
 
-    Total profit is aggregated and passed to the template.
-
-    Returns:
-        Rendered HTML template 'jornal.html'.
     """
     strategy_filter = request.args.get('strategy')
     date_filter = request.args.get('date')

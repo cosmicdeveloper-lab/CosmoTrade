@@ -10,6 +10,13 @@
     <div class="max-w-6xl mx-auto">
         <h1 class="text-3xl font-bold text-center text-pastel-purple mb-8">Trade Journal</h1>
 
+        <a href="{{ url_for('signals') }}"
+           class="inline-block bg-indigo-500 hover:bg-indigo-600 text-white px-6 py-2 rounded">
+          Signals
+        </a>
+
+
+
         <div class="bg-white rounded-xl shadow p-6 mb-8">
             <h2 class="text-xl font-semibold text-pastel-indigo mb-2">Total Profit</h2>
             <p class="text-2xl font-bold text-green-600">
@@ -41,7 +48,7 @@
     </div>
 
     <button type="submit"
-            class="bg-pastel-indigo hover:bg-indigo-500 text-white font-semibold py-2 px-6 rounded">
+            class="inline-block bg-indigo-500 hover:bg-indigo-600 text-white px-6 py-2 rounded">
         Apply Filters
     </button>
 </form>

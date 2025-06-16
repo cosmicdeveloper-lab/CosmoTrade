@@ -1,8 +1,6 @@
 import logging
 from divergence import find_divergence
-from Ichimoku_cloud import ichimoku_signal
-from moving_average import sma_cross
-from fibonacci import get_fibo
+from ema import ema_cross
 from rates import get_all_rates
 from config import wait_for_redis
 import time
@@ -60,7 +58,7 @@ def reset_redis():
 
 def send_signals():
     dataframe = get_all_rates()
+    dataframe_1d = dataframe[dataframe['timeframe'] == '1d']
+    filter_data('EMA Cross', ema_cross(dataframe_1d))
     filter_data('Divergence', find_divergence(dataframe))
-    filter_data('SMA Cross', sma_cross(dataframe))
-    filter_data('Fibonacci', get_fibo(dataframe))
-    filter_data('Ichimoku Cloud', ichimoku_signal(dataframe))
+    filter_data('Bollingersi', find_divergence(dataframe))

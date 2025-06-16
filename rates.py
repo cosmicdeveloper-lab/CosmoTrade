@@ -16,7 +16,7 @@ with open('symbols/coins.csv', mode='r') as file:
 # Get [timestamp, open, high, low, close, volume]
 def get_all_rates(symbols=None, timeframe=None):
     if timeframe is None and symbols is None:
-        timeframe = ['2h', '4h', '12h', '1d', '3d']
+        timeframe = ['2h', '4h', '1d']
         symbols = TOP_30_COINS
 
     load_dotenv()

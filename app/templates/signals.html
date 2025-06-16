@@ -10,6 +10,12 @@
     <div class="max-w-6xl mx-auto">
         <h1 class="text-3xl font-bold text-center text-pastel-purple mb-8">Trading Signals</h1>
 
+        <a href="{{ url_for('positions') }}"
+           class="inline-block bg-indigo-500 hover:bg-indigo-600 text-white px-6 py-2 rounded">
+          Jornal
+        </a>
+
+
         {% with messages = get_flashed_messages(with_categories=true) %}
         {% if messages %}
             {% for category, message in messages %}

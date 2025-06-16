@@ -27,9 +27,8 @@
 - 📡 Real-time price data for top 30 cryptocurrencies  
 - 🔍 Multiple technical analysis strategies:
   - RSI & MACD Divergence
-  - Ichimoku Cloud Breakouts
-  - Moving Average Crosses (7/25/99)
-  - Fibonacci 0.618 Levels
+  - Bollinger Band & RSI
+  - Moving Average Exponential Crosses in Daily timeframe (50/200)
 - 📤 Automatically sends formatted signals to your Telegram bot
 - 🪐 Duplicate signal prevention
 - ☁️ Lightweight & VPS-friendly (24/7 operation)
@@ -42,15 +41,12 @@
 **Divergence Detection (RSI & MACD):**  
 When price movement conflicts with indicator direction (e.g., rising price but falling RSI/MACD), this may indicate an upcoming reversal.
 
-**Ichimoku Cloud Breakouts:**  
-Signals are triggered when key Ichimoku components break above or below the cloud, indicating strong buy/sell opportunities.
+**Bollinger Band & RSI:**  
+Bullish: When the price is in lower band of the bollinger and rsi is less than 30
+Bearish: when the price is in upper band of the bollinger and rsi is more than 70
+**Moving Average Exponential Crossovers:**  
+Cross: 50=200
 
-**Moving Average Crossovers:**  
-Bullish: `7 > 25 > 99`  
-Bearish: `99 > 25 > 7`
-
-**Fibonacci Retracement (0.618):**  
-Monitors price behavior around the 0.618 level, commonly used for reversals or support/resistance.
 
 > ⚠️ **Disclaimer:** This bot is for informational purposes. Always conduct independent market analysis before trading.
 
