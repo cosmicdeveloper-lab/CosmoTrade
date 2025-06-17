@@ -32,9 +32,14 @@ def bollinger_bands(df):
         upper_band = group['bb_bbh'].iloc[-1]
         rsi = group['RSI'].iloc[-1]
 
-        if relative_difference(upper_band, price_upper) < 0.01 and rsi > 70:
-            bollinger_result[price_upper] = f'Bearish {symbol} with TimeFrame {timeframe}'
-        elif relative_difference(lower_band, price_lower) < 0.01 and rsi < 30:
-            bollinger_result[price_lower] = f'Bullish trend on {symbol} with TimeFrame {timeframe}'
+        bearish_differ = relative_difference(upper_band, price_upper)
+        bullish_differ = relative_difference(lower_band, price_lower)
+
+        if bearish_differ < 0.01 and rsi > 70:
+            signal_id = float(f'{rsi:.2g}')
+            bollinger_result[signal_id] = f'Bearish trend on {symbol} with TimeFrame {timeframe}'
+        elif bullish_differ < 0.01 and rsi < 30:
+            signal_id = float(f'{rsi:.2g}')
+            bollinger_result[signal_id] = f'Bullish trend on {symbol} with TimeFrame {timeframe}'
 
     return bollinger_result

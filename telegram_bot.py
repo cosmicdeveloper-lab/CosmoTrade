@@ -7,6 +7,7 @@ import time
 from dotenv import load_dotenv
 import os
 import requests
+from bollingersi import bollinger_bands
 
 load_dotenv()
 TOKEN = os.getenv('TELEGRAM_TOKEN')
@@ -61,4 +62,4 @@ def send_signals():
     dataframe_1d = dataframe[dataframe['timeframe'] == '1d']
     filter_data('EMA Cross', ema_cross(dataframe_1d))
     filter_data('Divergence', find_divergence(dataframe))
-    filter_data('Bollingersi', find_divergence(dataframe))
+    filter_data('Bollingersi', bollinger_bands(dataframe))

@@ -1,4 +1,7 @@
 from ta.trend import EMAIndicator
+import pandas as pd
+
+pd.options.mode.copy_on_write = True
 
 
 def relative_difference(a, b):
@@ -21,11 +24,12 @@ def ema_cross(df):
     for (symbol, timeframe), group in grouped:
         group = group.sort_values("timestamp").reset_index(drop=True)
 
-        sma50 = group['EMA50'].iloc[-1]
-        sma200 = group['EMA200'].iloc[-1]
-        timestamp = group['timestamp'].iloc[-1]
+        ema50 = group['EMA50'].iloc[-1]
+        ema200 = group['EMA200'].iloc[-1]
+        difference = relative_difference(ema50, ema200)
 
-        if relative_difference(sma50, sma200) < 0.01:
-            ema_result[timestamp] = f'EMA cross on {symbol} with TimeFrame {timeframe} '
+        if difference < 0.01:
+            signal_id = float(f'{difference:.3f}')
+            ema_result[signal_id] = f'EMA cross on {symbol} with TimeFrame {timeframe} '
 
     return ema_result

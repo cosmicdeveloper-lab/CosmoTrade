@@ -31,7 +31,7 @@ def get_all_rates(symbols=None, timeframe=None):
     frames = []
     for s in symbols:
         for t in timeframe:
-            rates = exchange.fetch_ohlcv(s, timeframe=t, limit=100)
+            rates = exchange.fetch_ohlcv(s, timeframe=t, limit=200)
             frame = pd.DataFrame(rates, columns=['timestamp', 'open', 'high', 'low', 'close', 'volume'])
             frame['symbol'] = s  # adding a column to indicate which coin it belongs to
             frame['timeframe'] = t
