@@ -56,7 +56,6 @@ Cross: 50=200
 **Head and shoulders pattern**
 
 **RSI & Hanging man & Fibonacci levels:**
-
 When the price is at a Fibonacci level, the last candle is a hanging man, and the RSI is either overbought or oversold
 
 > ⚠️ **Disclaimer:** This bot is for informational purposes. Always conduct independent market analysis before trading.
