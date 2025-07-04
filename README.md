@@ -29,6 +29,9 @@
   - RSI & MACD Divergence
   - Bollinger Band & RSI
   - Moving Average Exponential Crosses in Daily timeframe (50/200)
+  - M & W patterns
+  - Head and shoulders pattern
+  - RSI & Hanging man & Fibonacci levels
 - 📤 Automatically sends formatted signals to your Telegram bot
 - 🪐 Duplicate signal prevention
 - ☁️ Lightweight & VPS-friendly (24/7 operation)
@@ -48,6 +51,12 @@ Bearish: when the price is in upper band of the bollinger and rsi is more than 7
 **Moving Average Exponential Crossovers:**  
 Cross: 50=200
 
+**M & W patterns**
+
+**Head and shoulders pattern**
+
+**RSI & Hanging man & Fibonacci levels**
+When the price is at a Fibonacci level, the last candle is a hanging man, and the RSI is either overbought or oversold
 
 > ⚠️ **Disclaimer:** This bot is for informational purposes. Always conduct independent market analysis before trading.
 
