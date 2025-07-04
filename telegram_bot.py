@@ -8,6 +8,9 @@ from dotenv import load_dotenv
 import os
 import requests
 from bollingersi import bollinger_bands
+from head_shoulders import head_shoulders
+from rsi_prz_hangman import rsi_prz_hangman
+from wm_pattern import zigzag
 
 load_dotenv()
 TOKEN = os.getenv('TELEGRAM_TOKEN')
@@ -61,5 +64,8 @@ def send_signals():
     dataframe = get_all_rates()
     dataframe_1d = dataframe[dataframe['timeframe'] == '1d']
     filter_data('EMA Cross', ema_cross(dataframe_1d))
+    filter_data('W&M', zigzag(dataframe))
+    filter_data('Hangman & PRZ & RSI', rsi_prz_hangman(dataframe))
+    filter_data('Head & shoulders', head_shoulders(dataframe))
     filter_data('Divergence', find_divergence(dataframe))
     filter_data('Bollingersi', bollinger_bands(dataframe))
