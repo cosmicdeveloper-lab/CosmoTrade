@@ -81,6 +81,10 @@ def rsi_prz_hangman(df, tolerance=0.02):
         sma50 = group['SMA50'].iloc[-1]
         sma200 = group['SMA200'].iloc[-1]
 
+        hh_hanging_man = group['high'].iloc[-2]
+        ll_hanging_man = group['low'].iloc[-2]
+        last_candle = group['close'].iloc[-1]
+
         uptrend_price = group['high'].iloc[-1]
         downtrend_price = group['low'].iloc[-1]
         diff = high - low
@@ -98,7 +102,7 @@ def rsi_prz_hangman(df, tolerance=0.02):
 
             match = any(abs(uptrend_price - level) <= tolerance for level in bullish_levels.values())
 
-            if rsi > 70 and is_hanging_man(group) and match:
+            if rsi > 70 and is_hanging_man(group) and match and ll_hanging_man > last_candle:
                 results[uptrend_price] = f'Sell for {symbol} with {timeframe}'
 
         if sma50 < sma200:
@@ -114,7 +118,7 @@ def rsi_prz_hangman(df, tolerance=0.02):
 
             match = any(abs(downtrend_price - level) <= tolerance for level in bearish_levels.values())
 
-            if rsi < 30 and is_hanging_man(group) and match:
+            if rsi < 30 and is_hanging_man(group) and match and hh_hanging_man < last_candle:
                 results[downtrend_price] = f'Buy for {symbol} with timeframe {timeframe}'
 
     return results
