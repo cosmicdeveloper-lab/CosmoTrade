@@ -2,7 +2,7 @@ def relative_difference(a, b):
     return abs(a - b) / max(abs(a), abs(b))
 
 
-def zigzag(df, deviation=1, threshold=0.02):
+def zigzag(df, deviation=1, threshold=0.01):
 
     """
         Identifies zigzag patterns (M and W patterns) in financial price data for multiple symbols and timeframes.
@@ -18,9 +18,9 @@ def zigzag(df, deviation=1, threshold=0.02):
         deviation : float, optional (default=1)
             The minimum percentage change (drop or rise) required to identify a pivot point.
             Expressed as a percentage (e.g., 1 for 1%).
-        threshold : float, optional (default=0.02)
+        threshold : float, optional (default=0.01)
             The maximum relative difference between two pivot points to classify them as part of an
-            M or W pattern. Expressed as a fraction (e.g., 0.02 for 2%).
+            M or W pattern. Expressed as a fraction (e.g., 0.01 for 1%).
 
         Returns:
         --------
